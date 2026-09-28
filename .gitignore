@@ -1,0 +1,25 @@
+﻿# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+*.env
+
+# Dependencies
+node_modules/
+
+# Production & Vercel
+.vercel/
+dist/
+build/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+
+# Executables & Local tunnel binaries
+cloudflared.exe

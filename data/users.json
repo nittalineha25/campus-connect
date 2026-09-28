@@ -1,0 +1,51 @@
+[
+  {
+    "email": "rishabh.robotics@college.edu",
+    "name": "Rishabh",
+    "role": "president",
+    "clubId": "robotics-club",
+    "title": "Robotics Club President"
+  },
+  {
+    "email": "student.aman@college.edu",
+    "name": "Aman Verma",
+    "role": "student",
+    "clubId": null,
+    "title": "1st-Year CSE Student"
+  },
+  {
+    "email": "ananya.sharma@college.edu",
+    "name": "Ananya Sharma",
+    "role": "delegate",
+    "clubId": "robotics-club",
+    "title": "Autonomous Systems Lead (Delegated)"
+  },
+  {
+    "email": "president.music@college.edu",
+    "name": "Tanmay Bhatia",
+    "role": "president",
+    "clubId": "music-club",
+    "title": "Music Club President"
+  },
+  {
+    "email": "president.dance@college.edu",
+    "name": "Meera Kapoor",
+    "role": "president",
+    "clubId": "dance-club",
+    "title": "Dance Club President"
+  },
+  {
+    "email": "president.coding@college.edu",
+    "name": "Arjun Singhal",
+    "role": "president",
+    "clubId": "coding-club",
+    "title": "Coding Club President"
+  },
+  {
+    "email": "rohan.lead@college.edu",
+    "name": "Rohan Lead",
+    "role": "student",
+    "clubId": null,
+    "title": "Student"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "name": "campus-connect",
+  "version": "1.0.0",
+  "description": "Centralized campus club discovery, urgency deadline tracker, and credibility profiles",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node scripts/build.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "campus",
+    "clubs",
+    "deadlines",
+    "student-community"
+  ],
+  "author": "Campus Connect",
+  "license": "MIT"
+}

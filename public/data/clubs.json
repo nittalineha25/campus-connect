@@ -1,0 +1,1234 @@
+[
+  {
+    "id": "robotics-club",
+    "name": "Robotics Club",
+    "tagline": "Build • Compete • Create (Verified)",
+    "category": "Tech",
+    "badge": "Ends in 2 days",
+    "urgencyLevel": "critical",
+    "interestedCount": "2.4k",
+    "interestedNum": 2400,
+    "logo": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=160&auto=format&fit=crop&q=80",
+    "banner": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1600&auto=format&fit=crop&q=80",
+    "description": "We are a team of curious minds who love building real-world solutions. From line-followers to autonomous robots, we explore, learn and compete together. No prior experience needed — just passion!",
+    "foundedYear": 2018,
+    "weeklyCommitment": "5-7 hrs/week",
+    "meetingSchedule": "Wednesdays 5:30 PM & Saturday Lab Hackathons",
+    "tags": [
+      "Tech",
+      "Robotics",
+      "Innovation"
+    ],
+    "features": [
+      {
+        "icon": "🤝",
+        "label": "Teamwork"
+      },
+      {
+        "icon": "💡",
+        "label": "Innovation"
+      },
+      {
+        "icon": "🛠️",
+        "label": "Hands-on"
+      }
+    ],
+    "president": {
+      "name": "Rishabh",
+      "email": "rishabh.robotics@college.edu",
+      "branch": "Robotics & Automation '27"
+    },
+    "recruitment": {
+      "isOpen": true,
+      "startDate": "2026-09-28T00:00:00+05:30",
+      "endDate": "2026-10-04T23:59:59+05:30",
+      "displayStartDate": "Sep 28, 2026",
+      "displayEndDate": "Oct 04, 2026",
+      "statusText": "Registration Open",
+      "externalUrl": "https://forms.gle/roboticsRecruitment2026Demo",
+      "roles": [
+        "Autonomous Navigation Subsystem",
+        "Embedded Firmware & Microcontrollers",
+        "Computer Vision & Sensor Fusion",
+        "CAD Mechanical Prototyping & 3D Printing"
+      ],
+      "rounds": [
+        {
+          "round": "Round 1",
+          "name": "Hands-on Logic & Design Prompt",
+          "details": "Choose between basic Arduino logic, CAD gripper design, or line follower algorithm.",
+          "estimatedTime": "2-3 hours prep"
+        },
+        {
+          "round": "Round 2",
+          "name": "Lab Walkthrough & Practical Jam",
+          "details": "Work with senior mentors in the Maker Lab to build a sensor test circuit.",
+          "estimatedTime": "45 mins session"
+        }
+      ],
+      "tips": "Zero previous robotics experience required! Freshmen receive dedicated 1-on-1 mentorship during their first 4 weeks."
+    },
+    "stats": {
+      "views": 1248,
+      "members": 343,
+      "pendingPosts": 2,
+      "projectsShipped": 15,
+      "awards": 9
+    },
+    "socialLinks": {
+      "instagram": "https://instagram.com/campus_robotics",
+      "linkedin": "https://linkedin.com/company/campus-robotics",
+      "website": "https://campusrobotics.club"
+    },
+    "delegatedMembers": [
+      {
+        "name": "Ananya Sharma",
+        "email": "ananya.sharma@college.edu",
+        "role": "Autonomous Systems Lead",
+        "grantedAt": "2026-09-25T14:30:00+05:30"
+      },
+      {
+        "name": "Kabir Verma",
+        "email": "kabir.hardware@college.edu",
+        "role": "Lab Safety & Logistics Lead",
+        "grantedAt": "2026-09-26T11:00:00+05:30"
+      }
+    ],
+    "achievements": [
+      {
+        "id": "post-1790581098621",
+        "title": "Automated Line Follower V2 Live Demo",
+        "description": "Freshmen successfully calibrated PID sensors on curved track.",
+        "image": "https://images.unsplash.com/photo-1563770660941-20978e870e26?w=800&auto=format&fit=crop&q=80",
+        "year": "2026",
+        "event": "Campus Connect Showcase"
+      },
+      {
+        "id": "ach-1",
+        "title": "1st Place RoboRumble 2025",
+        "event": "National Robotics Championship",
+        "year": "2025",
+        "image": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&auto=format&fit=crop&q=80",
+        "description": "Our combat robot 'Titan-X' defeated 32 varsity teams with undefeated match rounds."
+      },
+      {
+        "id": "ach-2",
+        "title": "Runner Up TechFest 2024",
+        "event": "IIT Bombay Techfest",
+        "year": "2024",
+        "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&auto=format&fit=crop&q=80",
+        "description": "Autonomous grid-traversing drone placed 2nd nationwide in the obstacle course event."
+      },
+      {
+        "id": "ach-3",
+        "title": "Best Design IIT Madras 2023",
+        "event": "Shaastra Tech Innovation",
+        "year": "2023",
+        "image": "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=80",
+        "description": "Awarded Best Mechanical Architecture for low-cost prosthetic arm project."
+      }
+    ],
+    "ourWork": [
+      {
+        "id": "work-1",
+        "title": "Autonomous Line Follower",
+        "description": "Designed and built a smart robot that can detect and follow complex tracks with PID control.",
+        "image": "https://images.unsplash.com/photo-1563770660941-20978e870e26?w=800&auto=format&fit=crop&q=80",
+        "linkText": "View Project →",
+        "tags": [
+          "Arduino",
+          "PID Control",
+          "Infrared Arrays"
+        ]
+      },
+      {
+        "id": "work-2",
+        "title": "Omni-directional Rover",
+        "description": "Mecanum wheel robotics platform with onboard LiDAR and real-time SLAM mapping.",
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&q=80",
+        "linkText": "View Project →",
+        "tags": [
+          "ROS2",
+          "LiDAR",
+          "Computer Vision"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "id": "ev-1",
+        "title": "Freshers Hands-on Hardware Jam",
+        "date": "Oct 02, 2026 • 5:00 PM",
+        "location": "Maker Space Lab, Building C",
+        "description": "Come solder your very first LED blinker circuit and test drive our autonomous rovers.",
+        "rsvpLink": "https://forms.gle/roboticsJam2026"
+      },
+      {
+        "id": "ev-2",
+        "title": "RoboCup 2027 Orientation Session",
+        "date": "Oct 06, 2026 • 6:30 PM",
+        "location": "Auditorium Hall 2",
+        "description": "Learn about team structure, recruitment tasks, and how 1st-year students can join projects.",
+        "rsvpLink": "https://forms.gle/roboticsOrientation2026"
+      }
+    ],
+    "recentActivities": [
+      {
+        "id": "act-1790581098617",
+        "type": "dates_updated",
+        "title": "Registration dates updated",
+        "detail": "Sep 28, 2026 – Oct 04, 2026",
+        "time": "Just now",
+        "status": "completed",
+        "author": "President"
+      },
+      {
+        "id": "act-1",
+        "type": "member_request",
+        "title": "New member request",
+        "user": "Ananya Sharma",
+        "time": "2h ago",
+        "status": "approved",
+        "role": "Autonomous Navigation Lead"
+      },
+      {
+        "id": "act-2",
+        "type": "post_approval",
+        "title": "Post submitted for approval",
+        "detail": "Workshop Recap • Line Follower Demo",
+        "time": "4h ago",
+        "status": "pending",
+        "author": "Kabir Verma"
+      },
+      {
+        "id": "act-3",
+        "type": "dates_updated",
+        "title": "Registration dates updated",
+        "detail": "Sep 28 – Oct 04 (Recruitment Window)",
+        "time": "1d ago",
+        "status": "completed",
+        "author": "Rishabh"
+      }
+    ]
+  },
+  {
+    "id": "music-club",
+    "name": "Music Club",
+    "tagline": "Harmonize • Jam • Inspire",
+    "category": "Cultural",
+    "subCategory": "Cultural • Music",
+    "badge": "Ends in 3 days",
+    "urgencyLevel": "urgent",
+    "interestedCount": "856",
+    "interestedNum": 856,
+    "logo": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=160&auto=format&fit=crop&q=80",
+    "banner": "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=1600&auto=format&fit=crop&q=80",
+    "description": "The official music society of the campus. From acoustic ballads and classical ragas to power-chord rock concerts, we make sure campus life never misses a beat!",
+    "foundedYear": 2015,
+    "weeklyCommitment": "4-6 hrs/week",
+    "meetingSchedule": "Tuesdays & Thursdays 6:00 PM at Jam Pad",
+    "tags": [
+      "Cultural",
+      "Music",
+      "Vocal",
+      "Instruments"
+    ],
+    "features": [
+      {
+        "icon": "🎸",
+        "label": "Acoustic & Electric"
+      },
+      {
+        "icon": "🎤",
+        "label": "Vocal Ensemble"
+      },
+      {
+        "icon": "🥁",
+        "label": "Live Jam Pad"
+      }
+    ],
+    "president": {
+      "name": "Tanmay Bhatia",
+      "email": "president.music@college.edu",
+      "branch": "Civil Engineering '27"
+    },
+    "recruitment": {
+      "isOpen": true,
+      "startDate": "2026-09-27T00:00:00+05:30",
+      "endDate": "2026-10-01T23:59:59+05:30",
+      "displayStartDate": "Sep 27, 2026",
+      "displayEndDate": "Oct 01, 2026",
+      "statusText": "Auditions Open",
+      "externalUrl": "https://forms.gle/musicClubAuditions2026",
+      "roles": [
+        "Vocals (Western & Classical)",
+        "Guitar & Bass",
+        "Keyboards & Synths",
+        "Percussion & Drums",
+        "Audio Engineering & Mixing"
+      ],
+      "rounds": [
+        {
+          "round": "Round 1",
+          "name": "1-Minute Video/Audio Demo",
+          "details": "Submit a 60-second raw voice or instrument demo.",
+          "estimatedTime": "1 hour prep"
+        },
+        {
+          "round": "Round 2",
+          "name": "Live Studio Jam",
+          "details": "Jam with the senior band members on a simple 4-chord progression.",
+          "estimatedTime": "30 mins audition"
+        }
+      ],
+      "tips": "Don't worry about high-end studio microphones. Raw mobile phone recordings are 100% fine!"
+    },
+    "stats": {
+      "views": 980,
+      "members": 78,
+      "pendingPosts": 1,
+      "projectsShipped": 8,
+      "awards": 6
+    },
+    "achievements": [
+      {
+        "id": "m-ach-1",
+        "title": "1st Place Battle of Bands 2025",
+        "event": "Oasis Cultural Fest",
+        "year": "2025",
+        "image": "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=800&auto=format&fit=crop&q=80",
+        "description": "Our 6-piece fusion ensemble took gold against 20 universities."
+      },
+      {
+        "id": "m-ach-2",
+        "title": "Best Original Score 2024",
+        "event": "National Youth Fest",
+        "year": "2024",
+        "image": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop&q=80",
+        "description": "Composed original multi-instrumental soundtrack for campus documentary."
+      }
+    ],
+    "ourWork": [
+      {
+        "id": "m-work-1",
+        "title": "Annual Campus Unplugged",
+        "description": "An open-air amphitheater concert with 1,500+ student attendees.",
+        "image": "https://images.unsplash.com/photo-1506157786151-b8491531f063?w=800&auto=format&fit=crop&q=80",
+        "linkText": "Listen Tracks →",
+        "tags": [
+          "Live",
+          "Acoustic"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "id": "m-ev-1",
+        "title": "Open Mic Jam Session",
+        "date": "Sep 30, 2026 • 6:30 PM",
+        "location": "Central Amphitheatre",
+        "description": "Bring your guitar, ukulele, or vocal cords! Everyone gets 3 minutes on stage.",
+        "rsvpLink": "https://forms.gle/musicOpenMic"
+      }
+    ]
+  },
+  {
+    "id": "dance-club",
+    "name": "Dance Club",
+    "tagline": "Feel • Groove • Express",
+    "category": "Cultural",
+    "subCategory": "Cultural • Dance",
+    "badge": "Ends in 5 days",
+    "urgencyLevel": "urgent",
+    "interestedCount": "1.2k",
+    "interestedNum": 1200,
+    "logo": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=160&auto=format&fit=crop&q=80",
+    "banner": "https://images.unsplash.com/photo-1547153760-18fc86324498?w=1600&auto=format&fit=crop&q=80",
+    "description": "Home of energy, rhythm, and stage magic. We train together in Hip-Hop, Contemporary, Freestyle, and Folk, performing at major national competitions.",
+    "foundedYear": 2016,
+    "weeklyCommitment": "5-6 hrs/week",
+    "meetingSchedule": "Mon, Wed, Fri 5:30 PM at Dance Studio",
+    "tags": [
+      "Cultural",
+      "Dance",
+      "Hip-Hop",
+      "Contemporary"
+    ],
+    "features": [
+      {
+        "icon": "💃",
+        "label": "Choreography"
+      },
+      {
+        "icon": "⚡",
+        "label": "Urban & Freestyle"
+      },
+      {
+        "icon": "🏆",
+        "label": "National Circuit"
+      }
+    ],
+    "president": {
+      "name": "Meera Kapoor",
+      "email": "president.dance@college.edu",
+      "branch": "Biotechnology '27"
+    },
+    "recruitment": {
+      "isOpen": true,
+      "startDate": "2026-09-28T00:00:00+05:30",
+      "endDate": "2026-10-03T23:59:59+05:30",
+      "displayStartDate": "Sep 28, 2026",
+      "displayEndDate": "Oct 03, 2026",
+      "statusText": "Registrations Open",
+      "externalUrl": "https://forms.gle/danceClubRecruitment2026",
+      "roles": [
+        "Western Crew",
+        "Contemporary Soloists",
+        "Street & B-boying",
+        "Costume & Stage Production"
+      ],
+      "rounds": [
+        {
+          "round": "Round 1",
+          "name": "Short Routine Audition",
+          "details": "Perform any 45-60 second routine of your choice.",
+          "estimatedTime": "1 hour prep"
+        },
+        {
+          "round": "Round 2",
+          "name": "Choreography Workshop & Group Sync",
+          "details": "Learn an 8-count routine on the spot with senior dancers.",
+          "estimatedTime": "45 mins workshop"
+        }
+      ],
+      "tips": "Energy and stage presence matter far more than technical perfection. Come with an open mind!"
+    },
+    "stats": {
+      "views": 1100,
+      "members": 94,
+      "pendingPosts": 0,
+      "projectsShipped": 12,
+      "awards": 11
+    },
+    "achievements": [
+      {
+        "id": "d-ach-1",
+        "title": "National Street Dance Champions 2025",
+        "event": "Pulse Dance Fest",
+        "year": "2025",
+        "image": "https://images.unsplash.com/photo-1535525153412-5a42439a210d?w=800&auto=format&fit=crop&q=80",
+        "description": "Won the mega-crew competition with a 24-dancer sync routine."
+      }
+    ],
+    "ourWork": [
+      {
+        "id": "d-work-1",
+        "title": "Flashmob 2026",
+        "description": "Surprise campus flashmob with 60+ performers celebrating orientation week.",
+        "image": "https://images.unsplash.com/photo-1545224144-b38cd309ef69?w=800&auto=format&fit=crop&q=80",
+        "linkText": "Watch Video →",
+        "tags": [
+          "Flashmob",
+          "Campus Spirit"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "id": "d-ev-1",
+        "title": "Freshers Street Cypher",
+        "date": "Oct 01, 2026 • 5:30 PM",
+        "location": "Student Activity Center",
+        "description": "Open dance circle for freshers to groove, learn basic steps, and meet the crew.",
+        "rsvpLink": "https://forms.gle/danceCypher"
+      }
+    ]
+  },
+  {
+    "id": "coding-club",
+    "name": "Coding Club",
+    "tagline": "Code • Ship • Scale",
+    "category": "Tech",
+    "subCategory": "Tech • Software",
+    "badge": "Ends in 5 days",
+    "urgencyLevel": "urgent",
+    "interestedCount": "1.8k",
+    "interestedNum": 1800,
+    "logo": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=160&auto=format&fit=crop&q=80",
+    "banner": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&auto=format&fit=crop&q=80",
+    "description": "The core developer community on campus. We build production web apps, open-source tooling, hackathon projects, and crack algorithmic challenges.",
+    "foundedYear": 2014,
+    "weeklyCommitment": "5-6 hrs/week",
+    "meetingSchedule": "Thursdays 6:00 PM & Weekend Hack Nights",
+    "tags": [
+      "Tech",
+      "Web3",
+      "AI",
+      "Open Source"
+    ],
+    "features": [
+      {
+        "icon": "💻",
+        "label": "Full Stack Dev"
+      },
+      {
+        "icon": "🤖",
+        "label": "Applied AI"
+      },
+      {
+        "icon": "🚀",
+        "label": "Hackathons"
+      }
+    ],
+    "president": {
+      "name": "Arjun Singhal",
+      "email": "president.coding@college.edu",
+      "branch": "Computer Science '27"
+    },
+    "recruitment": {
+      "isOpen": true,
+      "startDate": "2026-09-28T00:00:00+05:30",
+      "endDate": "2026-10-03T23:59:59+05:30",
+      "displayStartDate": "Sep 28, 2026",
+      "displayEndDate": "Oct 03, 2026",
+      "statusText": "Recruiting Developers",
+      "externalUrl": "https://forms.gle/codingClubRecruitment2026",
+      "roles": [
+        "Frontend (React, Vue, Tailwind)",
+        "Backend & APIs (Node, Go, Python)",
+        "Machine Learning & Data",
+        "Community & Event Organizer"
+      ],
+      "rounds": [
+        {
+          "round": "Round 1",
+          "name": "Mini Project or DSA Challenge",
+          "details": "Submit a Github repo or solve 2 algorithmic prompts.",
+          "estimatedTime": "2 hours"
+        },
+        {
+          "round": "Round 2",
+          "name": "Code Review & Pair Programming",
+          "details": "Informal chat about your projects and mentorship goals.",
+          "estimatedTime": "30 mins"
+        }
+      ],
+      "tips": "Show what you've built! Even a simple calculator or portfolio website is great proof of curiosity."
+    },
+    "stats": {
+      "views": 1850,
+      "members": 210,
+      "pendingPosts": 0,
+      "projectsShipped": 25,
+      "awards": 14
+    },
+    "achievements": [
+      {
+        "id": "c-ach-1",
+        "title": "Smart India Hackathon Winners 2025",
+        "event": "SIH Grand Finale",
+        "year": "2025",
+        "image": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&auto=format&fit=crop&q=80",
+        "description": "Created an AI-powered automated bus fleet dispatcher."
+      }
+    ],
+    "ourWork": [
+      {
+        "id": "c-work-1",
+        "title": "Campus Course Reviewer",
+        "description": "Open source portal used by 4,000+ students during course registration.",
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80",
+        "linkText": "View Code →",
+        "tags": [
+          "Next.js",
+          "Postgres"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "id": "c-ev-1",
+        "title": "Freshers HackNight & Git Workshop",
+        "date": "Oct 04, 2026 • 7:00 PM",
+        "location": "Computer Center Lab 4",
+        "description": "Set up VS Code, GitHub, and deploy your first website to the cloud.",
+        "rsvpLink": "https://forms.gle/gitWorkshop"
+      }
+    ]
+  },
+  {
+    "id": "photography-club",
+    "name": "Photography Club",
+    "tagline": "Capture • Frame • Chronicle",
+    "category": "Arts",
+    "subCategory": "Arts • Photography",
+    "badge": "Ends in 4 days",
+    "urgencyLevel": "urgent",
+    "interestedCount": "920",
+    "interestedNum": 920,
+    "logo": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=160&auto=format&fit=crop&q=80",
+    "banner": "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=1600&auto=format&fit=crop&q=80",
+    "description": "Documenting life on campus through lenses, light, and visual storytelling. We cover campus festivals, conduct golden-hour photo walks, and master Lightroom & Photoshop editing.",
+    "foundedYear": 2017,
+    "weeklyCommitment": "3-4 hrs/week",
+    "meetingSchedule": "Fridays 5:00 PM Photo Walk",
+    "tags": [
+      "Arts",
+      "Photography",
+      "Cinematography",
+      "Lightroom"
+    ],
+    "features": [
+      {
+        "icon": "📸",
+        "label": "Street & Portrait"
+      },
+      {
+        "icon": "🎞️",
+        "label": "Color Grading"
+      },
+      {
+        "icon": "🌅",
+        "label": "Photo Walks"
+      }
+    ],
+    "president": {
+      "name": "Sanjana Rao",
+      "email": "president.photo@college.edu",
+      "branch": "Architecture '27"
+    },
+    "recruitment": {
+      "isOpen": true,
+      "startDate": "2026-09-28T00:00:00+05:30",
+      "endDate": "2026-10-02T23:59:59+05:30",
+      "displayStartDate": "Sep 28, 2026",
+      "displayEndDate": "Oct 02, 2026",
+      "statusText": "Portfolio Submissions Open",
+      "externalUrl": "https://forms.gle/photoRecruitment2026",
+      "roles": [
+        "Event & Concert Photographer",
+        "Portrait & Editorial",
+        "Videographer & Reel Editor",
+        "Exhibition Curator"
+      ],
+      "rounds": [
+        {
+          "round": "Round 1",
+          "name": "3-Photo Portfolio",
+          "details": "Upload 3 pictures clicked on any camera or smartphone.",
+          "estimatedTime": "30 mins"
+        },
+        {
+          "round": "Round 2",
+          "name": "Campus Photo Walk Test",
+          "details": "Join us for a 45-min sunset shoot on campus grounds.",
+          "estimatedTime": "45 mins"
+        }
+      ],
+      "tips": "You do NOT need a DSLR! 70% of our best freshmen started with just an iPhone or Android phone."
+    },
+    "stats": {
+      "views": 890,
+      "members": 45,
+      "pendingPosts": 0,
+      "projectsShipped": 18,
+      "awards": 5
+    },
+    "achievements": [
+      {
+        "id": "p-ach-1",
+        "title": "National Geographic Youth Showcase 2025",
+        "event": "NatGeo Student Awards",
+        "year": "2025",
+        "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&auto=format&fit=crop&q=80",
+        "description": "Featured story on Himalayan river conservation by club members."
+      }
+    ],
+    "ourWork": [
+      {
+        "id": "p-work-1",
+        "title": "Faces of Campus (Photo Essay)",
+        "description": "A tribute to security guards, canteen chefs, and librarians.",
+        "image": "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=800&auto=format&fit=crop&q=80",
+        "linkText": "View Exhibition →",
+        "tags": [
+          "Editorial",
+          "Portraits"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "id": "p-ev-1",
+        "title": "Sunset Architecture Photo Walk",
+        "date": "Sep 29, 2026 • 5:15 PM",
+        "location": "Heritage Clock Tower",
+        "description": "Learn framing, leading lines, and golden hour lighting tricks.",
+        "rsvpLink": "https://forms.gle/photoWalk"
+      }
+    ]
+  },
+  {
+    "id": "finance-club",
+    "name": "Finance Club",
+    "tagline": "Analyze • Invest • Grow",
+    "category": "Business",
+    "subCategory": "Business • Finance",
+    "badge": "Ends in 6 days",
+    "urgencyLevel": "normal",
+    "interestedCount": "1.1k",
+    "interestedNum": 1100,
+    "logo": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=160&auto=format&fit=crop&q=80",
+    "banner": "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1600&auto=format&fit=crop&q=80",
+    "description": "Empowering students with financial literacy, equity research, venture capital dynamics, and algorithmic trading knowledge.",
+    "foundedYear": 2019,
+    "weeklyCommitment": "4-5 hrs/week",
+    "meetingSchedule": "Wednesdays 6:00 PM at Seminar Hall",
+    "tags": [
+      "Business",
+      "Finance",
+      "Consulting",
+      "Valuation"
+    ],
+    "features": [
+      {
+        "icon": "📈",
+        "label": "Equity Research"
+      },
+      {
+        "icon": "💼",
+        "label": "Case Competitions"
+      },
+      {
+        "icon": "🪙",
+        "label": "Macroeconomics"
+      }
+    ],
+    "president": {
+      "name": "Raghav Goel",
+      "email": "president.finance@college.edu",
+      "branch": "Economics & Finance '27"
+    },
+    "recruitment": {
+      "isOpen": true,
+      "startDate": "2026-09-28T00:00:00+05:30",
+      "endDate": "2026-10-04T23:59:59+05:30",
+      "displayStartDate": "Sep 28, 2026",
+      "displayEndDate": "Oct 04, 2026",
+      "statusText": "Applications Open",
+      "externalUrl": "https://forms.gle/financeRecruitment2026",
+      "roles": [
+        "Equity & Sector Analyst",
+        "Venture & Startup Sourcing",
+        "Derivatives & Quant Modeling",
+        "Newsletter & Market Reports"
+      ],
+      "rounds": [
+        {
+          "round": "Round 1",
+          "name": "1-Page Stock Pitch or Macro Breakdown",
+          "details": "Pick any publicly listed company and explain why you would buy or avoid it.",
+          "estimatedTime": "2 hours"
+        },
+        {
+          "round": "Round 2",
+          "name": "Stock Pitch Defense & Interview",
+          "details": "Discuss market trends and thesis with senior analysts.",
+          "estimatedTime": "30 mins"
+        }
+      ],
+      "tips": "Clear logic and curiosity about business models matter 10x more than complex financial jargon."
+    },
+    "stats": {
+      "views": 920,
+      "members": 62,
+      "pendingPosts": 0,
+      "projectsShipped": 9,
+      "awards": 7
+    },
+    "achievements": [
+      {
+        "id": "f-ach-1",
+        "title": "National Stock Pitch Winner 2025",
+        "event": "IIM Ahmedabad FinFest",
+        "year": "2025",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
+        "description": "Long recommendation on EV semiconductor supplier awarded 1st place."
+      }
+    ],
+    "ourWork": [
+      {
+        "id": "f-work-1",
+        "title": "Campus Student Investment Fund",
+        "description": "Managing a mock $50,000 diversified portfolio with 18.4% annualized Alpha.",
+        "image": "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&auto=format&fit=crop&q=80",
+        "linkText": "Read Report →",
+        "tags": [
+          "Alpha",
+          "Portfolio"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "id": "f-ev-1",
+        "title": "Freshers Guide to Personal Finance & Zerodha",
+        "date": "Oct 03, 2026 • 6:00 PM",
+        "location": "Auditorium Hall 1",
+        "description": "How students can budget pocket money, avoid debt traps, and start index investing.",
+        "rsvpLink": "https://forms.gle/financeGuide"
+      }
+    ]
+  },
+  {
+    "id": "debate-club",
+    "name": "Debate Club",
+    "tagline": "Argue • Persuade • Prevail",
+    "category": "Academic",
+    "subCategory": "Academic • Parliamentary",
+    "badge": "Ends in 7 days",
+    "urgencyLevel": "normal",
+    "interestedCount": "640",
+    "interestedNum": 640,
+    "logo": "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=160&auto=format&fit=crop&q=80",
+    "banner": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1600&auto=format&fit=crop&q=80",
+    "description": "The premier parliamentary debating and model UN society. We hone critical thinking, geopolitical analysis, rhetoric, and debate across Asian Parliamentary and British Parliamentary formats.",
+    "foundedYear": 2013,
+    "weeklyCommitment": "4 hrs/week",
+    "meetingSchedule": "Mondays & Thursdays 5:30 PM",
+    "tags": [
+      "Academic",
+      "Debate",
+      "Model UN",
+      "Public Speaking"
+    ],
+    "features": [
+      {
+        "icon": "🏛️",
+        "label": "British Parliamentary"
+      },
+      {
+        "icon": "🎙️",
+        "label": "Rhetoric & Logic"
+      },
+      {
+        "icon": "🌍",
+        "label": "Geopolitics"
+      }
+    ],
+    "president": {
+      "name": "Devika Menon",
+      "email": "president.debate@college.edu",
+      "branch": "Political Science & Law '27"
+    },
+    "recruitment": {
+      "isOpen": true,
+      "startDate": "2026-09-28T00:00:00+05:30",
+      "endDate": "2026-10-05T23:59:59+05:30",
+      "displayStartDate": "Sep 28, 2026",
+      "displayEndDate": "Oct 05, 2026",
+      "statusText": "Tryouts Open",
+      "externalUrl": "https://forms.gle/debateTryouts2026",
+      "roles": [
+        "Parliamentary Debater",
+        "Adjudicator / Judge",
+        "Model UN Delegate",
+        "Research & Motion Formulator"
+      ],
+      "rounds": [
+        {
+          "round": "Round 1",
+          "name": "Extempore 2-Minute Speech",
+          "details": "Pick one topic from 3 impromptu prompts on current affairs.",
+          "estimatedTime": "15 mins prep"
+        },
+        {
+          "round": "Round 2",
+          "name": "Mock 2v2 Mini Debate",
+          "details": "Paired with a fellow fresher in a friendly 10-minute round.",
+          "estimatedTime": "30 mins"
+        }
+      ],
+      "tips": "We look for structure, logical framing, and rebuttal instincts. Stage fright is completely normal and we will train you out of it!"
+    },
+    "stats": {
+      "views": 640,
+      "members": 38,
+      "pendingPosts": 0,
+      "projectsShipped": 14,
+      "awards": 12
+    },
+    "achievements": [
+      {
+        "id": "deb-ach-1",
+        "title": "Best Delegation - Harvard USG MUN 2025",
+        "event": "World MUN Circuit",
+        "year": "2025",
+        "image": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=800&auto=format&fit=crop&q=80",
+        "description": "6 individual speaker citations and overall Best Delegation trophy."
+      }
+    ],
+    "ourWork": [
+      {
+        "id": "deb-work-1",
+        "title": "The Great Campus Debate 2026",
+        "description": "Annual faculty vs student exhibition debate attended by 800+ attendees.",
+        "image": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&auto=format&fit=crop&q=80",
+        "linkText": "Watch Debate →",
+        "tags": [
+          "Exhibition",
+          "Faculty vs Students"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "id": "deb-ev-1",
+        "title": "Freshers Rhetoric & Impromptu Speaking Jam",
+        "date": "Oct 05, 2026 • 5:30 PM",
+        "location": "Lecture Hall 3",
+        "description": "Fun, low-stakes games like 'Shipwreck' and 'Just a Minute' (JAM).",
+        "rsvpLink": "https://forms.gle/debateJam"
+      }
+    ]
+  },
+  {
+    "id": "sports-club",
+    "name": "Sports Club",
+    "tagline": "Compete • Persevere • Conquer",
+    "category": "Sports",
+    "subCategory": "Sports • Athletics",
+    "badge": "Ends in 3 days",
+    "urgencyLevel": "urgent",
+    "interestedCount": "2.1k",
+    "interestedNum": 2100,
+    "logo": "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?w=160&auto=format&fit=crop&q=80",
+    "banner": "https://images.unsplash.com/photo-1526676037777-05a232554f77?w=1600&auto=format&fit=crop&q=80",
+    "description": "The home of university athletics, inter-college tournaments, intramural leagues, fitness conditioning, and competitive spirit.",
+    "foundedYear": 2012,
+    "weeklyCommitment": "6-8 hrs/week",
+    "meetingSchedule": "Daily Morning & Evening Ground Sessions",
+    "tags": [
+      "Sports",
+      "Fitness",
+      "Basketball",
+      "Football",
+      "Cricket"
+    ],
+    "features": [
+      {
+        "icon": "⚽",
+        "label": "Inter-College Cups"
+      },
+      {
+        "icon": "🏀",
+        "label": "Intramural Leagues"
+      },
+      {
+        "icon": "🏋️",
+        "label": "Strength & Conditioning"
+      }
+    ],
+    "president": {
+      "name": "Varun Nair",
+      "email": "president.sports@college.edu",
+      "branch": "Mechanical Engineering '27"
+    },
+    "recruitment": {
+      "isOpen": true,
+      "startDate": "2026-09-27T00:00:00+05:30",
+      "endDate": "2026-09-30T23:59:59+05:30",
+      "displayStartDate": "Sep 27, 2026",
+      "displayEndDate": "Sep 30, 2026",
+      "statusText": "Ground Trials Active",
+      "externalUrl": "https://forms.gle/sportsClubTrials2026",
+      "roles": [
+        "Basketball Varsity Squad",
+        "Football 11s",
+        "Cricket Team",
+        "Track & Field Sprinters",
+        "Badminton & Table Tennis"
+      ],
+      "rounds": [
+        {
+          "round": "Round 1",
+          "name": "Fitness & Endurance Drills",
+          "details": "Beep test, shuttle runs, agility cones.",
+          "estimatedTime": "1 hour trial"
+        },
+        {
+          "round": "Round 2",
+          "name": "Game Simulation & Matchplay",
+          "details": "Full-court scrimmages with varsity captains.",
+          "estimatedTime": "1.5 hours"
+        }
+      ],
+      "tips": "Wear standard sports shoes and bring your water bottle. Beginners welcome for development squads!"
+    },
+    "stats": {
+      "views": 1650,
+      "members": 180,
+      "pendingPosts": 0,
+      "projectsShipped": 16,
+      "awards": 22
+    },
+    "achievements": [
+      {
+        "id": "sp-ach-1",
+        "title": "State Inter-University Champions 2025",
+        "event": "All-State Sports Meet",
+        "year": "2025",
+        "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&auto=format&fit=crop&q=80",
+        "description": "Gold medals in Basketball, Football, and 4x100m relay."
+      }
+    ],
+    "ourWork": [
+      {
+        "id": "sp-work-1",
+        "title": "Campus Intramural Super League",
+        "description": "Organized a 32-team tournament engaging 450+ 1st-year students.",
+        "image": "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&auto=format&fit=crop&q=80",
+        "linkText": "View Standings →",
+        "tags": [
+          "Intramural",
+          "Varsity"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "id": "sp-ev-1",
+        "title": "Freshers Basketball 3v3 Knockout",
+        "date": "Sep 30, 2026 • 5:00 PM",
+        "location": "Outdoor Courts",
+        "description": "Fast-paced 3v3 tournament. Assemble a team or join as a free agent!",
+        "rsvpLink": "https://forms.gle/3v3Knockout"
+      }
+    ]
+  },
+  {
+    "id": "art-design-club",
+    "name": "Art & Design Club",
+    "tagline": "Create • Design • Inspire",
+    "category": "Arts",
+    "subCategory": "Arts • UI/UX & Graphics",
+    "badge": "Ends in 8 days",
+    "urgencyLevel": "normal",
+    "interestedCount": "780",
+    "interestedNum": 780,
+    "logo": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=160&auto=format&fit=crop&q=80",
+    "banner": "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=1600&auto=format&fit=crop&q=80",
+    "description": "Where visual imagination meets design craft. We span Figma UI/UX, 3D Blender modeling, digital painting, campus murals, brand identity, and typography.",
+    "foundedYear": 2018,
+    "weeklyCommitment": "4 hrs/week",
+    "meetingSchedule": "Saturdays 3:00 PM in Design Studio",
+    "tags": [
+      "Arts",
+      "Design",
+      "Figma",
+      "3D Blender",
+      "Murals"
+    ],
+    "features": [
+      {
+        "icon": "🎨",
+        "label": "Digital & Canvas Art"
+      },
+      {
+        "icon": "📱",
+        "label": "UI/UX & Product Design"
+      },
+      {
+        "icon": "🖌️",
+        "label": "Campus Murals"
+      }
+    ],
+    "president": {
+      "name": "Tara Sen",
+      "email": "president.design@college.edu",
+      "branch": "Design & Media '27"
+    },
+    "recruitment": {
+      "isOpen": true,
+      "startDate": "2026-09-28T00:00:00+05:30",
+      "endDate": "2026-10-06T23:59:59+05:30",
+      "displayStartDate": "Sep 28, 2026",
+      "displayEndDate": "Oct 06, 2026",
+      "statusText": "Portfolio Review Active",
+      "externalUrl": "https://forms.gle/artDesignRecruitment2026",
+      "roles": [
+        "UI/UX & Product Designer",
+        "Graphic & Social Media Illustrator",
+        "3D Artist & Motion Animator",
+        "Muralist & Traditional Painter"
+      ],
+      "rounds": [
+        {
+          "round": "Round 1",
+          "name": "Creative Showcase",
+          "details": "Submit 2-3 artworks, Figma prototypes, or sketches.",
+          "estimatedTime": "1 hour prep"
+        },
+        {
+          "round": "Round 2",
+          "name": "Design Jam & Review",
+          "details": "Informal redesign brainstorm with design seniors.",
+          "estimatedTime": "30 mins"
+        }
+      ],
+      "tips": "Traditional paper sketches are just as welcome as 3D renders. We evaluate your eye for visual balance and curiosity."
+    },
+    "stats": {
+      "views": 780,
+      "members": 54,
+      "pendingPosts": 0,
+      "projectsShipped": 20,
+      "awards": 8
+    },
+    "achievements": [
+      {
+        "id": "art-ach-1",
+        "title": "Best Campus Branding 2025",
+        "event": "National Design Conclave",
+        "year": "2025",
+        "image": "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=800&auto=format&fit=crop&q=80",
+        "description": "Created complete identity system and merchandise line for Fest 2025."
+      }
+    ],
+    "ourWork": [
+      {
+        "id": "art-work-1",
+        "title": "Campus Library Mural Project",
+        "description": "300 sq. ft. painted wall celebrating scientific discoveries through history.",
+        "image": "https://images.unsplash.com/photo-1561055657-b9e0bf0fa360?w=800&auto=format&fit=crop&q=80",
+        "linkText": "View Murals →",
+        "tags": [
+          "Murals",
+          "Campus Art"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "id": "art-ev-1",
+        "title": "Figma 101 for Freshers",
+        "date": "Oct 07, 2026 • 5:00 PM",
+        "location": "Computer Center Lab 2",
+        "description": "Learn how to build sleek app mockups from scratch.",
+        "rsvpLink": "https://forms.gle/figma101"
+      }
+    ]
+  },
+  {
+    "id": "environmental-club",
+    "name": "Environmental Club",
+    "tagline": "Sustain • Conserve • Impact",
+    "category": "Social",
+    "subCategory": "Social • Sustainability",
+    "badge": "Ends in 10 days",
+    "urgencyLevel": "normal",
+    "interestedCount": "510",
+    "interestedNum": 510,
+    "logo": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=160&auto=format&fit=crop&q=80",
+    "banner": "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=1600&auto=format&fit=crop&q=80",
+    "description": "Driving zero-waste initiatives, solar campus mapping, organic urban gardening, and wildlife biodiversity tracking on college grounds.",
+    "foundedYear": 2020,
+    "weeklyCommitment": "3 hrs/week",
+    "meetingSchedule": "Sundays 9:00 AM Garden Drive",
+    "tags": [
+      "Social",
+      "Sustainability",
+      "Zero Waste",
+      "Climate Action"
+    ],
+    "features": [
+      {
+        "icon": "🌱",
+        "label": "Campus Permaculture"
+      },
+      {
+        "icon": "♻️",
+        "label": "Zero-Waste Audits"
+      },
+      {
+        "icon": "☀️",
+        "label": "Solar Energy Projects"
+      }
+    ],
+    "president": {
+      "name": "Ishaan Ghosh",
+      "email": "president.enviro@college.edu",
+      "branch": "Environmental Sciences '27"
+    },
+    "recruitment": {
+      "isOpen": true,
+      "startDate": "2026-09-28T00:00:00+05:30",
+      "endDate": "2026-10-08T23:59:59+05:30",
+      "displayStartDate": "Sep 28, 2026",
+      "displayEndDate": "Oct 08, 2026",
+      "statusText": "Green Ambassadors Open",
+      "externalUrl": "https://forms.gle/environmentalRecruitment2026",
+      "roles": [
+        "Campus Waste Audit Lead",
+        "Organic Garden Curator",
+        "Clean Energy Analyst",
+        "Community Campaigner"
+      ],
+      "rounds": [
+        {
+          "round": "Round 1",
+          "name": "Green Campus Proposal",
+          "details": "Propose 1 actionable sustainability idea for our campus.",
+          "estimatedTime": "1 hour prep"
+        },
+        {
+          "round": "Round 2",
+          "name": "Community Walkthrough",
+          "details": "Tour the student permaculture garden with our team.",
+          "estimatedTime": "30 mins"
+        }
+      ],
+      "tips": "Passionate about nature and climate? That is all you need to join our team."
+    },
+    "stats": {
+      "views": 510,
+      "members": 42,
+      "pendingPosts": 0,
+      "projectsShipped": 7,
+      "awards": 4
+    },
+    "achievements": [
+      {
+        "id": "env-ach-1",
+        "title": "National Green Campus Award 2025",
+        "event": "Ministry of Environment",
+        "year": "2025",
+        "image": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&auto=format&fit=crop&q=80",
+        "description": "Recognized for diverting 5 tons of campus food waste into compost."
+      }
+    ],
+    "ourWork": [
+      {
+        "id": "env-work-1",
+        "title": "Student Permaculture Farm",
+        "description": "Supplying 150kg of fresh organic greens each semester to the campus mess.",
+        "image": "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&auto=format&fit=crop&q=80",
+        "linkText": "View Farm →",
+        "tags": [
+          "Permaculture",
+          "Organic"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "id": "env-ev-1",
+        "title": "Sunday Morning Plantation & Seed Bomb Workshop",
+        "date": "Oct 04, 2026 • 8:30 AM",
+        "location": "Botanical Garden",
+        "description": "Help us plant 100 indigenous saplings and learn how to make wildflower seed bombs.",
+        "rsvpLink": "https://forms.gle/plantationDrive"
+      }
+    ]
+  }
+]
