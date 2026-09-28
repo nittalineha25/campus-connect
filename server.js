@@ -89,7 +89,8 @@ function getReqUser(req, users) {
   };
 }
 
-const server = http.createServer(async (req, res) => {
+const app = http.createServer(async (req, res) => {
+const server = app;
   // CORS Preflight
   if (req.method === 'OPTIONS') {
     res.writeHead(204, {
@@ -441,10 +442,10 @@ const server = http.createServer(async (req, res) => {
 });
 
 if (require.main === module) {
-  server.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 Campus Connect server running at http://localhost:${PORT}`);
-    console.log(`   Accessible on local network and Cloudflare tunnel`);
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 Campus Connect server running on port ${PORT}`);
+    console.log(`   Accessible at http://localhost:${PORT}`);
   });
 }
 
-module.exports = server;
+module.exports = app;
