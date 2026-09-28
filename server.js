@@ -111,6 +111,17 @@ const server = http.createServer(async (req, res) => {
     const users = readJson(USERS_FILE);
     const currentUser = getReqUser(req, users);
 
+    // GET /api/network-info
+    if (pathname === '/api/network-info' && method === 'GET') {
+      sendJson(res, 200, {
+        success: true,
+        tunnelUrl: 'https://tape-kingston-mpg-pencil.trycloudflare.com',
+        localIp: 'http://192.168.29.10:3000',
+        localhost: 'http://localhost:3000'
+      });
+      return;
+    }
+
     // GET /api/clubs
     if (pathname === '/api/clubs' && method === 'GET') {
       const category = parsedUrl.query.category;

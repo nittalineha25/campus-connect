@@ -1,4 +1,4 @@
-// Main Application Orchestrator & View Controller
+// Main Application Orchestrator & View Controller with Dark/White Mode & Device Sync
 import { appStore } from './store.js';
 import { renderNavbar } from './components/navbar.js';
 import { renderHeroCarousel } from './components/heroCarousel.js';
@@ -38,6 +38,13 @@ async function initApp() {
   const navbarContainer = document.getElementById('navbar-container');
   const mainView = document.getElementById('main-view');
 
+  // Ensure document theme class matches store
+  if (appStore.state.theme === 'dark') {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+
   // 1. Fetch initial clubs from API (with static fallback)
   try {
     const res = await fetch('/api/clubs');
@@ -62,15 +69,15 @@ async function initApp() {
   // 2. Parse initial URL route
   syncRouteFromUrl();
 
-  // 3. Render initial view
+  // 4. Render initial view
   renderCurrentView(navbarContainer, mainView);
 
-  // 4. Handle browser back / forward buttons
+  // 5. Handle browser back / forward buttons
   window.addEventListener('popstate', () => {
     syncRouteFromUrl();
   });
 
-  // 5. Subscribe to store changes
+  // 6. Subscribe to store changes
   appStore.subscribe(() => {
     renderCurrentView(navbarContainer, mainView);
   });
@@ -114,7 +121,7 @@ function renderHomeView(container) {
   renderClubDirectory(container.querySelector('#directory-mount'), false);
 }
 
-// Render Saved / Bookmarked Clubs View
+// Render Saved / Bookmarked Clubs View with Dark/White Mode
 function renderSavedView(container) {
   const savedIds = appStore.state.savedClubIds;
   const savedClubs = appStore.state.clubs.filter(c => savedIds.includes(c.id));
@@ -123,22 +130,22 @@ function renderSavedView(container) {
     <div class="space-y-6 animate-fade-in pt-4">
       <div class="flex items-center justify-between">
         <div>
-          <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">Saved Clubs</h2>
-          <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Your bookmarked clubs and upcoming application deadlines.</p>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight transition-colors">Saved Clubs</h2>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">Your bookmarked clubs and upcoming application deadlines.</p>
         </div>
-        <div class="text-xs font-bold text-slate-500 bg-white px-3 py-1 rounded-full border border-slate-200">
+        <div class="text-xs font-bold text-slate-500 dark:text-slate-400 bg-white dark:bg-[#111622] px-3.5 py-1.5 rounded-full border border-slate-200 dark:border-slate-800 transition-colors">
           ${savedClubs.length} saved
         </div>
       </div>
 
       ${savedClubs.length === 0 ? `
-        <div class="text-center py-20 bg-white rounded-3xl border border-slate-200 p-8 space-y-3">
+        <div class="text-center py-20 bg-white dark:bg-[#111622] rounded-3xl border border-slate-200 dark:border-slate-800 p-8 space-y-3 transition-colors">
           <div class="text-4xl">🔖</div>
-          <h3 class="text-base font-bold text-slate-800">No saved clubs yet</h3>
-          <p class="text-xs text-slate-500 max-w-sm mx-auto">
+          <h3 class="text-base font-bold text-slate-800 dark:text-slate-200">No saved clubs yet</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
             Click the bookmark icon on any club card or profile to save it here for fast deadline tracking.
           </p>
-          <button id="browse-clubs-btn" class="px-5 py-2.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-bold shadow-sm">
+          <button id="browse-clubs-btn" class="px-5 py-2.5 rounded-full bg-slate-900 hover:bg-black dark:bg-white dark:hover:bg-slate-200 text-white dark:text-slate-900 text-xs font-bold shadow-sm transition-colors">
             Explore Clubs
           </button>
         </div>

@@ -1,7 +1,11 @@
 // Campus Connect Central State Store
+const initialTheme = localStorage.getItem('cc_theme') || 
+  (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
 export const appStore = {
   state: {
     view: 'home', // 'home' | 'browse' | 'saved' | 'club-profile' | 'dashboard' | 'login'
+    theme: initialTheme, // 'light' | 'dark'
     clubs: [],
     selectedClubId: 'robotics-club',
     selectedCategory: 'All',
@@ -27,6 +31,22 @@ export const appStore = {
 
   notify() {
     this.state.listeners.forEach(fn => fn(this.state));
+  },
+
+  toggleTheme() {
+    const newTheme = this.state.theme === 'dark' ? 'light' : 'dark';
+    this.setTheme(newTheme);
+  },
+
+  setTheme(theme) {
+    this.state.theme = theme;
+    localStorage.setItem('cc_theme', theme);
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    this.notify();
   },
 
   setView(view, clubId = null, pushHistory = true) {

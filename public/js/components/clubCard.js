@@ -1,16 +1,16 @@
-// Individual Club Card matching mockup clean white aesthetic
+// Individual Club Card matching mockup clean white & sleek dark aesthetic
 import { appStore } from '../store.js';
 
 export function createClubCard(club) {
   const isSaved = appStore.isSaved(club.id);
 
   const card = document.createElement('div');
-  card.className = 'bg-white rounded-3xl p-3.5 shadow-sm border border-slate-200 card-hover-shadow relative cursor-pointer flex flex-col justify-between group';
+  card.className = 'bg-white dark:bg-[#111622] rounded-3xl p-3.5 shadow-sm border border-slate-200 dark:border-slate-800 card-hover-shadow relative cursor-pointer flex flex-col justify-between group transition-colors';
   card.id = `club-card-${club.id}`;
 
   card.innerHTML = `
     <!-- Image Header with Bookmark Button -->
-    <div class="relative rounded-2xl overflow-hidden aspect-[4/3] mb-3 bg-slate-100">
+    <div class="relative rounded-2xl overflow-hidden aspect-[4/3] mb-3 bg-slate-100 dark:bg-slate-800">
       <img 
         src="${club.banner || club.logo}" 
         alt="${club.name}" 
@@ -29,17 +29,17 @@ export function createClubCard(club) {
 
     <!-- Club Details -->
     <div class="space-y-1">
-      <h3 class="text-sm font-bold text-slate-900 group-hover:text-indigo-600 transition-colors leading-snug">
+      <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-snug">
         ${club.name}
       </h3>
-      <div class="text-[11px] text-slate-500 font-medium">
+      <div class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
         ${club.category}
       </div>
       <div class="pt-1.5 flex items-center justify-between text-[11px]">
-        <span class="font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded-full">
+        <span class="font-bold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-full border border-transparent dark:border-slate-700/50">
           ${club.badge || 'Recruiting'}
         </span>
-        <span class="text-slate-400 font-medium">
+        <span class="text-slate-400 dark:text-slate-500 font-medium">
           ${club.interestedCount || '1k'} interested
         </span>
       </div>

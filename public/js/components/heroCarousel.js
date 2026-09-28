@@ -3,9 +3,9 @@ import { appStore } from '../store.js';
 
 export function renderHeroCarousel(container) {
   const clubs = appStore.state.clubs;
-  const roboticsClub = clubs.find(c => c.id === 'robotics-club') || clubs[0];
-  const musicClub = clubs.find(c => c.id === 'music-club') || clubs[1];
-  const danceClub = clubs.find(c => c.id === 'dance-club') || clubs[2];
+  const roboticsClub = clubs.find(c => c.id === 'robotics-club') || clubs[0] || {};
+  const musicClub = clubs.find(c => c.id === 'music-club') || clubs[1] || {};
+  const danceClub = clubs.find(c => c.id === 'dance-club') || clubs[2] || {};
 
   const isRoboticsSaved = appStore.isSaved('robotics-club');
   const isMusicSaved = appStore.isSaved('music-club');
@@ -15,34 +15,34 @@ export function renderHeroCarousel(container) {
     <div class="space-y-8 animate-fade-in">
       
       <!-- HERO BANNER -->
-      <div class="hero-card relative p-6 sm:p-10 md:p-12 overflow-hidden shadow-2xl rounded-3xl min-h-[300px] md:min-h-[360px] flex flex-col justify-between">
+      <div class="hero-card relative p-6 sm:p-10 md:p-12 overflow-hidden shadow-2xl rounded-3xl min-h-[320px] md:min-h-[380px] flex flex-col justify-between border border-slate-800/60 dark:border-slate-800">
         
         <!-- Background Dusk Campus Building Image -->
         <img 
           src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1600&auto=format&fit=crop&q=80" 
           alt="Campus at Dusk" 
-          class="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.45] contrast-[1.05]"
+          class="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.42] contrast-[1.08]"
         />
         
         <!-- Gradient Overlay -->
         <div class="absolute inset-0 hero-bg-overlay"></div>
 
-        <!-- Top Row: Handwritten Quote -->
+        <!-- Top Row: Centralized Badge + Handwritten Quote from Mockup -->
         <div class="relative z-10 flex justify-between items-start">
           <div class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-semibold">
             <span>✨ Centralized Club Discovery & Deadlines</span>
           </div>
-          <div class="text-white/90 text-xl sm:text-2xl md:text-3xl font-bold handwritten tracking-wide select-none rotate-1">
-            Good Clubs, Great Stories ✨
+          <div class="text-white/95 text-xl sm:text-2xl md:text-3xl font-bold handwritten tracking-wide select-none rotate-1 drop-shadow-md">
+            Good Clubs, Great Stories :)
           </div>
         </div>
 
-        <!-- Center: Hero Typography -->
+        <!-- Center: Hero Typography matching Mockup -->
         <div class="relative z-10 max-w-2xl my-4">
-          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1]">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12]">
             Your campus.<br/>
             Your people.<br/>
-            Your <span class="text-indigo-400 bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-purple-300">next thing.</span>
+            Your <span class="text-indigo-400 bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300">next thing.</span>
           </h1>
           <p class="mt-4 text-xs sm:text-sm md:text-base text-slate-300 max-w-lg leading-relaxed font-normal">
             Discover clubs, track deadlines, and be part of what makes campus, campus.
@@ -84,10 +84,10 @@ export function renderHeroCarousel(container) {
       <div class="space-y-4 pt-2">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <span class="text-red-500 text-base">🔥</span>
-            <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight">Closing Soon</h2>
+            <span class="text-red-500 text-lg">🔥</span>
+            <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white tracking-tight transition-colors">Closing Soon</h2>
           </div>
-          <button id="view-all-closing-btn" class="text-xs font-bold text-slate-500 hover:text-slate-900 transition-colors flex items-center gap-1">
+          <button id="view-all-closing-btn" class="text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1">
             <span>View all</span>
             <span>→</span>
           </button>
@@ -97,13 +97,13 @@ export function renderHeroCarousel(container) {
         <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
           
           <!-- BIG FEATURED URGENCY CARD (Robotics Club) -->
-          <div class="md:col-span-6 lg:col-span-7 bg-[#111317] text-white rounded-3xl p-5 sm:p-6 shadow-xl relative overflow-hidden group cursor-pointer border border-slate-800 transition-all hover:border-slate-700" id="card-hero-robotics">
+          <div class="md:col-span-6 lg:col-span-7 bg-[#111317] dark:bg-[#0E121B] text-white rounded-3xl p-5 sm:p-6 shadow-xl relative overflow-hidden group cursor-pointer border border-slate-800 dark:border-slate-700/80 transition-all hover:border-slate-600" id="card-hero-robotics">
             <!-- Background Rover Image -->
             <img 
               src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=80" 
               alt="Robotics Rover" 
-              class="absolute right-0 top-0 bottom-0 w-1/2 sm:w-5/12 h-full object-cover object-center opacity-85 group-hover:scale-105 transition-transform duration-500 mask-image"
-              style="-webkit-mask-image: linear-gradient(to right, transparent 0%, black 60%); mask-image: linear-gradient(to right, transparent 0%, black 60%);"
+              class="absolute right-0 top-0 bottom-0 w-1/2 sm:w-5/12 h-full object-cover object-center opacity-85 group-hover:scale-105 transition-transform duration-500"
+              style="-webkit-mask-image: linear-gradient(to right, transparent 0%, black 50%); mask-image: linear-gradient(to right, transparent 0%, black 50%);"
             />
             
             <div class="relative z-10 flex flex-col justify-between h-full space-y-6 max-w-sm">
@@ -143,7 +143,7 @@ export function renderHeroCarousel(container) {
           </div>
 
           <!-- SECONDARY CARD 1: Music Club -->
-          <div class="md:col-span-3 lg:col-span-2.5 bg-white rounded-3xl p-4 shadow-sm border border-slate-200 card-hover-shadow relative cursor-pointer flex flex-col justify-between" id="card-hero-music">
+          <div class="md:col-span-3 lg:col-span-2.5 bg-white dark:bg-[#111622] rounded-3xl p-4 shadow-sm border border-slate-200 dark:border-slate-800 card-hover-shadow relative cursor-pointer flex flex-col justify-between transition-colors" id="card-hero-music">
             <div class="relative rounded-2xl overflow-hidden aspect-[4/3] mb-3">
               <img 
                 src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600&auto=format&fit=crop&q=80" 
@@ -163,9 +163,9 @@ export function renderHeroCarousel(container) {
               </button>
             </div>
             <div>
-              <h4 class="text-sm font-bold text-slate-900">Music Club</h4>
-              <p class="text-[11px] text-slate-500">Cultural • Music</p>
-              <div class="text-[10px] text-slate-400 mt-1 flex items-center gap-1">
+              <h4 class="text-sm font-bold text-slate-900 dark:text-white transition-colors">Music Club</h4>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400">Cultural • Music</p>
+              <div class="text-[10px] text-slate-400 dark:text-slate-500 mt-1 flex items-center gap-1">
                 <span>👥</span>
                 <span>856 interested</span>
               </div>
@@ -173,7 +173,7 @@ export function renderHeroCarousel(container) {
           </div>
 
           <!-- SECONDARY CARD 2: Dance Club -->
-          <div class="md:col-span-3 lg:col-span-2.5 bg-white rounded-3xl p-4 shadow-sm border border-slate-200 card-hover-shadow relative cursor-pointer flex flex-col justify-between" id="card-hero-dance">
+          <div class="md:col-span-3 lg:col-span-2.5 bg-white dark:bg-[#111622] rounded-3xl p-4 shadow-sm border border-slate-200 dark:border-slate-800 card-hover-shadow relative cursor-pointer flex flex-col justify-between transition-colors" id="card-hero-dance">
             <div class="relative rounded-2xl overflow-hidden aspect-[4/3] mb-3">
               <img 
                 src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=600&auto=format&fit=crop&q=80" 
@@ -193,9 +193,9 @@ export function renderHeroCarousel(container) {
               </button>
             </div>
             <div>
-              <h4 class="text-sm font-bold text-slate-900">Dance Club</h4>
-              <p class="text-[11px] text-slate-500">Cultural • Dance</p>
-              <div class="text-[10px] text-slate-400 mt-1 flex items-center gap-1">
+              <h4 class="text-sm font-bold text-slate-900 dark:text-white transition-colors">Dance Club</h4>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400">Cultural • Dance</p>
+              <div class="text-[10px] text-slate-400 dark:text-slate-500 mt-1 flex items-center gap-1">
                 <span>👥</span>
                 <span>1.2k interested</span>
               </div>

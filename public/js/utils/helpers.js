@@ -1,12 +1,16 @@
 // UI and formatting helpers
+import { appStore } from '../store.js';
+
 export function showToast(message, type = 'success') {
   const container = document.getElementById('toast-container');
   if (!container) return;
 
   const toast = document.createElement('div');
-  const bgClass = type === 'success' ? 'bg-emerald-800 text-white' : (type === 'info' ? 'bg-slate-900 text-white' : 'bg-red-800 text-white');
+  const bgClass = type === 'success' 
+    ? 'bg-emerald-800 dark:bg-emerald-700 text-white' 
+    : (type === 'info' ? 'bg-slate-900 dark:bg-slate-800 text-white' : 'bg-red-800 dark:bg-red-700 text-white');
   
-  toast.className = `px-4 py-3 rounded-2xl shadow-xl border border-slate-700 ${bgClass} text-xs font-semibold flex items-center gap-2 transform transition-all duration-300 animate-fade-in pointer-events-auto`;
+  toast.className = `px-4 py-3 rounded-2xl shadow-xl border border-slate-700/40 ${bgClass} text-xs font-semibold flex items-center gap-2 transform transition-all duration-300 animate-fade-in pointer-events-auto`;
   toast.innerHTML = `
     <span>${type === 'success' ? '✓' : (type === 'info' ? 'ℹ' : '⚠')}</span>
     <span>${message}</span>
@@ -29,30 +33,30 @@ export function openExternalModal(club) {
   const modal = document.createElement('div');
   modal.className = 'fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in';
   modal.innerHTML = `
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 text-center relative">
-      <button id="close-ext-modal" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2">✕</button>
+    <div class="bg-white dark:bg-[#111622] rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 dark:border-slate-800 text-center relative transition-colors">
+      <button id="close-ext-modal" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2">✕</button>
       
-      <div class="w-14 h-14 rounded-2xl bg-slate-900 text-white flex items-center justify-center mx-auto text-xl font-bold mb-4 shadow-md">
+      <div class="w-14 h-14 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center mx-auto text-xl font-bold mb-4 shadow-md">
         cc
       </div>
       
-      <h3 class="text-lg font-bold text-slate-900">Apply to ${club.name}</h3>
-      <p class="text-xs text-slate-500 mt-1">Official External Recruitment Form</p>
+      <h3 class="text-lg font-bold text-slate-900 dark:text-white">Apply to ${club.name}</h3>
+      <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Official External Recruitment Form</p>
 
-      <div class="my-5 p-4 rounded-2xl bg-slate-50 border border-slate-200 text-left text-xs space-y-2">
-        <p class="font-semibold text-slate-800 flex items-center gap-1.5">
-          <span class="text-emerald-600">●</span> Discovery Layer Notice:
+      <div class="my-5 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-left text-xs space-y-2">
+        <p class="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+          <span class="text-emerald-500">●</span> Discovery Layer Notice:
         </p>
-        <p class="text-slate-600 text-[11px] leading-relaxed">
+        <p class="text-slate-600 dark:text-slate-300 text-[11px] leading-relaxed">
           As designed in the Campus Connect PRD, our platform centralizes discovery and deadlines. Applications are processed directly through the club's own official form.
         </p>
-        <div class="pt-1 text-[11px] text-slate-400 font-mono break-all">
-          Destination: <span class="text-indigo-600">${url}</span>
+        <div class="pt-1 text-[11px] text-slate-400 dark:text-slate-400 font-mono break-all">
+          Destination: <span class="text-indigo-600 dark:text-indigo-400">${url}</span>
         </div>
       </div>
 
       <div class="flex items-center gap-3">
-        <button id="cancel-ext-btn" class="flex-1 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold">
+        <button id="cancel-ext-btn" class="flex-1 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold transition-colors">
           Back
         </button>
         <a 
@@ -60,7 +64,7 @@ export function openExternalModal(club) {
           target="_blank" 
           rel="noopener noreferrer" 
           id="confirm-ext-btn" 
-          class="flex-1 py-3 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-bold shadow-md flex items-center justify-center gap-1.5"
+          class="flex-1 py-3 rounded-xl bg-slate-900 hover:bg-black dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-900 text-xs font-bold shadow-md flex items-center justify-center gap-1.5 transition-colors"
         >
           <span>Open Form</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

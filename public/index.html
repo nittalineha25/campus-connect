@@ -11,10 +11,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS CDN with dark mode enabled -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
@@ -41,11 +42,24 @@
     };
   </script>
 
+  <!-- Theme Initializer (prevents flash of unstyled theme) -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('cc_theme');
+      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+
+
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="/css/style.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.85em%22 font-size=%2280%22 font-weight=%22bold%22 fill=%22%23111%22>cc</text></svg>">
 </head>
-<body class="bg-[#F8F9FA] text-slate-800 antialiased min-h-screen flex flex-col font-sans selection:bg-slate-900 selection:text-white pb-20 md:pb-6">
+<body class="bg-[#F8F9FA] dark:bg-[#0A0D14] text-slate-800 dark:text-slate-100 antialiased min-h-screen flex flex-col font-sans selection:bg-slate-900 selection:text-white transition-colors duration-200 pb-20 md:pb-6">
 
   <!-- Toast Notification Container -->
   <div id="toast-container" class="fixed top-5 right-5 z-[100] flex flex-col gap-2 pointer-events-none"></div>
@@ -57,7 +71,7 @@
   <main id="main-view" class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5"></main>
 
   <!-- Mobile Bottom Navigation Bar (Shown on small screens) -->
-  <div id="mobile-bottom-nav" class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 px-6 py-2 flex items-center justify-around shadow-lg"></div>
+  <div id="mobile-bottom-nav" class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#0E131F]/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 px-6 py-2 flex items-center justify-around shadow-lg transition-colors"></div>
 
   <!-- Global Modal Mount Container -->
   <div id="modal-container"></div>
