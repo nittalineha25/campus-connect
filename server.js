@@ -1,5 +1,4 @@
 // Campus Connect - Full Stack Backend Server (Node.js Native)
-// MIB Software Cluster Recruitment Challenge
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
@@ -12,7 +11,13 @@ const PUBLIC_DIR = path.join(__dirname, 'public');
 const CLUBS_FILE = path.join(DATA_DIR, 'clubs.json');
 const USERS_FILE = path.join(DATA_DIR, 'users.json');
 
-// MIME types
+if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+if (!fs.existsSync(CLUBS_FILE)) fs.writeFileSync(CLUBS_FILE, '[]', 'utf-8');
+if (!fs.existsSync(USERS_FILE)) fs.writeFileSync(USERS_FILE, '[]', 'utf-8');
+
+process.on('unhandledRejection', err => console.error('Unhandled rejection:', err));
+process.on('uncaughtException', err => console.error('Uncaught exception:', err));
+
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -26,6 +31,16 @@ const MIME_TYPES = {
   '.woff2': 'font/woff2',
   '.webp': 'image/webp'
 };
+
+function corsHeaders(req) {
+  const requested = req && req.headers['access-control-request-headers'];
+  return {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': requested || 'Content-Type, Authorization, x-user-email',
+    'Access-Control-Max-Age': '86400'
+  };
+}
 
 function readJson(file) {
   try {
@@ -68,20 +83,18 @@ function parseRequestBody(req) {
   });
 }
 
-function sendJson(res, statusCode, data) {
-  res.writeHead(statusCode, {
-    'Content-Type': 'application/json; charset=utf-8',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization, x-user-email'
-  });
+function sendJson(res, statusCode, data, req) {
+  res.writeHead(statusCode, Object.assign(
+    { 'Content-Type': 'application/json; charset=utf-8' },
+    corsHeaders(req || res.req)
+  ));
   res.end(JSON.stringify(data));
 }
 
 function getReqUser(req, users) {
   const email = req.headers['x-user-email'] || '';
   if (!email) return null;
-  return users.find(u => u.email.toLowerCase() === email.toLowerCase()) || {
+  return users.find(u => u.email && u.email.toLowerCase() === email.toLowerCase()) || {
     email,
     name: email.split('@')[0],
     role: 'student',
@@ -89,15 +102,22 @@ function getReqUser(req, users) {
   };
 }
 
-const app = http.createServer(async (req, res) => {
-const server = app;
+function toList(value) {
+  if (Array.isArray(value)) return value;
+  if (value) return String(value).split(',').map(t => t.trim()).filter(Boolean);
+  return [];
+}
+
+function toIsoDate(value, fallback) {
+  if (!value) return fallback;
+  const d = new Date(value);
+  return isNaN(d.getTime()) ? fallback : d.toISOString();
+}
+
+async function handleRequest(req, res) {
   // CORS Preflight
   if (req.method === 'OPTIONS') {
-    res.writeHead(204, {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization, x-user-email'
-    });
+    res.writeHead(204, corsHeaders(req));
     res.end();
     return;
   }
@@ -119,7 +139,7 @@ const server = app;
         tunnelUrl: 'https://tape-kingston-mpg-pencil.trycloudflare.com',
         localIp: 'http://192.168.29.10:3000',
         localhost: 'http://localhost:3000'
-      });
+      }, req);
       return;
     }
 
@@ -133,14 +153,17 @@ const server = app;
       let results = [...clubs];
 
       if (category && category !== 'All') {
-        results = results.filter(c => c.category.toLowerCase() === category.toLowerCase() || (c.subCategory && c.subCategory.toLowerCase().includes(category.toLowerCase())));
+        results = results.filter(c =>
+          (c.category || '').toLowerCase() === category.toLowerCase() ||
+          (c.subCategory && c.subCategory.toLowerCase().includes(category.toLowerCase()))
+        );
       }
 
       if (search) {
-        results = results.filter(c => 
-          c.name.toLowerCase().includes(search) ||
-          c.tagline.toLowerCase().includes(search) ||
-          c.description.toLowerCase().includes(search) ||
+        results = results.filter(c =>
+          (c.name || '').toLowerCase().includes(search) ||
+          (c.tagline || '').toLowerCase().includes(search) ||
+          (c.description || '').toLowerCase().includes(search) ||
           (c.tags && c.tags.some(t => t.toLowerCase().includes(search))) ||
           (c.recruitment && c.recruitment.roles && c.recruitment.roles.some(r => r.toLowerCase().includes(search)))
         );
@@ -150,51 +173,58 @@ const server = app;
         results = results.filter(c => c.urgencyLevel === 'critical' || c.urgencyLevel === 'urgent');
       }
 
+      const endOf = c => new Date((c.recruitment && c.recruitment.endDate) || 0);
       if (sort === 'deadline') {
-        results.sort((a, b) => new Date(a.recruitment.endDate) - new Date(b.recruitment.endDate));
+        results.sort((a, b) => endOf(a) - endOf(b));
       } else if (sort === 'name') {
-        results.sort((a, b) => a.name.localeCompare(b.name));
+        results.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
       } else if (sort === 'popularity') {
         results.sort((a, b) => (b.interestedNum || 0) - (a.interestedNum || 0));
       }
 
-      sendJson(res, 200, { success: true, count: results.length, clubs: results });
+      sendJson(res, 200, { success: true, count: results.length, clubs: results }, req);
       return;
     }
 
-    // POST /api/clubs - Create a new club  <-- NEW, THIS IS THE FIX
+    // POST /api/clubs - Create a new club
     if (pathname === '/api/clubs' && method === 'POST') {
       const body = await parseRequestBody(req);
 
-      if (!body.name || !body.name.trim()) {
-        sendJson(res, 400, { success: false, message: 'Club name is required' });
+      if (!body.name || !String(body.name).trim()) {
+        sendJson(res, 400, { success: false, message: 'Club name is required' }, req);
         return;
       }
 
-      const slug = body.name.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-      const id = slug + '-' + Date.now().toString().slice(-5);
+      const name = String(body.name).trim();
+      const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      const id = (slug || 'club') + '-' + Date.now().toString().slice(-5);
+
+      const formUrl = body.formUrl || body.googleFormUrl || body.formLink ||
+        body.googleFormLink || body.externalUrl || body.applicationUrl || '';
+      const deadline = body.endDate || body.deadline || body.applicationDeadline;
+      const defaultEnd = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
 
       const newClub = {
         id,
-        name: body.name.trim(),
+        name,
         tagline: body.tagline || '',
         description: body.description || '',
         category: body.category || 'General',
         subCategory: body.subCategory || '',
-        tags: Array.isArray(body.tags) ? body.tags : (body.tags ? String(body.tags).split(',').map(t => t.trim()) : []),
-        logo: body.logo || '',
-        weeklyCommitment: body.weeklyCommitment || '',
+        tags: toList(body.tags),
+        logo: body.logo || body.logoUrl || body.imageUrl || '',
+        weeklyCommitment: body.weeklyCommitment || body.commitment || '',
         urgencyLevel: body.urgencyLevel || 'normal',
         interestedNum: 0,
         recruitment: {
-          startDate: body.startDate || new Date().toISOString(),
-          endDate: body.endDate || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+          startDate: toIsoDate(body.startDate, new Date().toISOString()),
+          endDate: toIsoDate(deadline, defaultEnd),
           displayStartDate: body.displayStartDate || '',
           displayEndDate: body.displayEndDate || '',
-          externalUrl: body.formUrl || '',
+          externalUrl: formUrl,
           isOpen: true,
           statusText: 'Applications Open',
-          roles: Array.isArray(body.roles) ? body.roles : (body.roles ? String(body.roles).split(',').map(r => r.trim()) : [])
+          roles: toList(body.roles)
         },
         stats: { members: 0, pendingPosts: 0, projectsShipped: 0 },
         achievements: [],
@@ -205,17 +235,17 @@ const server = app;
       clubs.push(newClub);
       writeJson(CLUBS_FILE, clubs);
 
-      sendJson(res, 201, { success: true, message: 'Club created successfully!', club: newClub });
+      sendJson(res, 201, { success: true, message: 'Club created successfully!', club: newClub }, req);
       return;
     }
 
-    // POST /api/clubs/:id/apply - returns the Google Form link and counts the click
+    // POST /api/clubs/:id/apply
     const applyMatch = pathname.match(/^\/api\/clubs\/([a-zA-Z0-9-]+)\/apply$/);
     if (applyMatch && method === 'POST') {
       const clubId = applyMatch[1];
       const club = clubs.find(c => c.id === clubId);
       if (!club) {
-        sendJson(res, 404, { success: false, message: 'Club not found' });
+        sendJson(res, 404, { success: false, message: 'Club not found' }, req);
         return;
       }
 
@@ -224,11 +254,11 @@ const server = app;
 
       const formUrl = club.recruitment && club.recruitment.externalUrl;
       if (!formUrl) {
-        sendJson(res, 404, { success: false, message: 'This club has no application form link yet' });
+        sendJson(res, 404, { success: false, message: 'This club has no application form link yet' }, req);
         return;
       }
 
-      sendJson(res, 200, { success: true, formUrl });
+      sendJson(res, 200, { success: true, formUrl }, req);
       return;
     }
 
@@ -238,24 +268,25 @@ const server = app;
       const clubId = clubMatch[1];
       const club = clubs.find(c => c.id === clubId);
       if (!club) {
-        sendJson(res, 404, { success: false, message: 'Club not found' });
+        sendJson(res, 404, { success: false, message: 'Club not found' }, req);
         return;
       }
-      sendJson(res, 200, { success: true, club });
+      sendJson(res, 200, { success: true, club }, req);
       return;
     }
 
-    // PUT /api/clubs/:id/recruitment - Update recruitment window & external link
+    // PUT /api/clubs/:id/recruitment
     const recMatch = pathname.match(/^\/api\/clubs\/([a-zA-Z0-9-]+)\/recruitment$/);
     if (recMatch && method === 'PUT') {
       const clubId = recMatch[1];
       const club = clubs.find(c => c.id === clubId);
       if (!club) {
-        sendJson(res, 404, { success: false, message: 'Club not found' });
+        sendJson(res, 404, { success: false, message: 'Club not found' }, req);
         return;
       }
 
       const body = await parseRequestBody(req);
+      if (!club.recruitment) club.recruitment = {};
       if (body.startDate) club.recruitment.startDate = body.startDate;
       if (body.endDate) club.recruitment.endDate = body.endDate;
       if (body.displayStartDate) club.recruitment.displayStartDate = body.displayStartDate;
@@ -266,7 +297,6 @@ const server = app;
       if (body.weeklyCommitment) club.weeklyCommitment = body.weeklyCommitment;
       if (body.tagline) club.tagline = body.tagline;
 
-      // Add recent activity record
       if (!club.recentActivities) club.recentActivities = [];
       club.recentActivities.unshift({
         id: 'act-' + Date.now(),
@@ -279,17 +309,17 @@ const server = app;
       });
 
       writeJson(CLUBS_FILE, clubs);
-      sendJson(res, 200, { success: true, message: 'Recruitment details updated successfully', club });
+      sendJson(res, 200, { success: true, message: 'Recruitment details updated successfully', club }, req);
       return;
     }
 
-    // POST /api/clubs/:id/delegate - President grants posting rights to member email
+    // POST /api/clubs/:id/delegate
     const delegateMatch = pathname.match(/^\/api\/clubs\/([a-zA-Z0-9-]+)\/delegate$/);
     if (delegateMatch && method === 'POST') {
       const clubId = delegateMatch[1];
       const club = clubs.find(c => c.id === clubId);
       if (!club) {
-        sendJson(res, 404, { success: false, message: 'Club not found' });
+        sendJson(res, 404, { success: false, message: 'Club not found' }, req);
         return;
       }
 
@@ -299,7 +329,7 @@ const server = app;
       const roleTitle = (body.role || 'Content Contributor').trim();
 
       if (!email || !email.includes('@')) {
-        sendJson(res, 400, { success: false, message: 'A valid college email address is required.' });
+        sendJson(res, 400, { success: false, message: 'A valid college email address is required.' }, req);
         return;
       }
 
@@ -317,8 +347,7 @@ const server = app;
         });
       }
 
-      // Add to users.json
-      let userRecord = users.find(u => u.email.toLowerCase() === email);
+      let userRecord = users.find(u => u.email && u.email.toLowerCase() === email);
       if (userRecord) {
         userRecord.role = 'delegate';
         userRecord.clubId = clubId;
@@ -340,18 +369,18 @@ const server = app;
         success: true,
         message: 'Delegated posting rights successfully granted to ' + email,
         delegatedMembers: club.delegatedMembers
-      });
+      }, req);
       return;
     }
 
-    // DELETE /api/clubs/:id/delegate/:email - Revoke delegated access
+    // DELETE /api/clubs/:id/delegate/:email
     const revokeMatch = pathname.match(/^\/api\/clubs\/([a-zA-Z0-9-]+)\/delegate\/(.+)$/);
     if (revokeMatch && method === 'DELETE') {
       const clubId = revokeMatch[1];
       const targetEmail = decodeURIComponent(revokeMatch[2]).toLowerCase();
       const club = clubs.find(c => c.id === clubId);
       if (!club) {
-        sendJson(res, 404, { success: false, message: 'Club not found' });
+        sendJson(res, 404, { success: false, message: 'Club not found' }, req);
         return;
       }
 
@@ -359,7 +388,7 @@ const server = app;
         club.delegatedMembers = club.delegatedMembers.filter(m => m.email.toLowerCase() !== targetEmail);
       }
 
-      const uIdx = users.findIndex(u => u.email.toLowerCase() === targetEmail && u.clubId === clubId);
+      const uIdx = users.findIndex(u => u.email && u.email.toLowerCase() === targetEmail && u.clubId === clubId);
       if (uIdx !== -1) {
         users[uIdx].role = 'student';
         users[uIdx].clubId = null;
@@ -369,23 +398,24 @@ const server = app;
       writeJson(CLUBS_FILE, clubs);
       writeJson(USERS_FILE, users);
 
-      sendJson(res, 200, { success: true, message: 'Revoked access for ' + targetEmail, delegatedMembers: club.delegatedMembers });
+      sendJson(res, 200, { success: true, message: 'Revoked access for ' + targetEmail, delegatedMembers: club.delegatedMembers }, req);
       return;
     }
 
-    // PUT /api/clubs/:id/activity/:actId - Handle activity approval / decline
+    // PUT /api/clubs/:id/activity/:actId
     const actMatch = pathname.match(/^\/api\/clubs\/([a-zA-Z0-9-]+)\/activity\/([a-zA-Z0-9-]+)$/);
     if (actMatch && method === 'PUT') {
       const clubId = actMatch[1];
       const actId = actMatch[2];
       const club = clubs.find(c => c.id === clubId);
       if (!club) {
-        sendJson(res, 404, { success: false, message: 'Club not found' });
+        sendJson(res, 404, { success: false, message: 'Club not found' }, req);
         return;
       }
 
       const body = await parseRequestBody(req);
-      const action = body.action; // 'approve', 'decline'
+      const action = body.action;
+      if (!club.stats) club.stats = { members: 0, pendingPosts: 0, projectsShipped: 0 };
       if (club.recentActivities) {
         const item = club.recentActivities.find(a => a.id === actId);
         if (item) {
@@ -400,17 +430,17 @@ const server = app;
       }
 
       writeJson(CLUBS_FILE, clubs);
-      sendJson(res, 200, { success: true, message: 'Activity ' + action + 'd successfully', club });
+      sendJson(res, 200, { success: true, message: 'Activity ' + action + 'd successfully', club }, req);
       return;
     }
 
-    // POST /api/clubs/:id/posts - Add post / achievement
+    // POST /api/clubs/:id/posts
     const postMatch = pathname.match(/^\/api\/clubs\/([a-zA-Z0-9-]+)\/posts$/);
     if (postMatch && method === 'POST') {
       const clubId = postMatch[1];
       const club = clubs.find(c => c.id === clubId);
       if (!club) {
-        sendJson(res, 404, { success: false, message: 'Club not found' });
+        sendJson(res, 404, { success: false, message: 'Club not found' }, req);
         return;
       }
 
@@ -425,17 +455,18 @@ const server = app;
       };
 
       if (!club.achievements) club.achievements = [];
+      if (!club.stats) club.stats = { members: 0, pendingPosts: 0, projectsShipped: 0 };
       club.achievements.unshift(newPost);
       club.stats.projectsShipped = (club.stats.projectsShipped || 0) + 1;
 
       writeJson(CLUBS_FILE, clubs);
-      sendJson(res, 201, { success: true, message: 'Post published to club profile!', post: newPost, club });
+      sendJson(res, 201, { success: true, message: 'Post published to club profile!', post: newPost, club }, req);
       return;
     }
 
     // GET /api/users
     if (pathname === '/api/users' && method === 'GET') {
-      sendJson(res, 200, { success: true, users });
+      sendJson(res, 200, { success: true, users }, req);
       return;
     }
 
@@ -444,13 +475,12 @@ const server = app;
       const body = await parseRequestBody(req);
       const email = (body.email || '').trim().toLowerCase();
       if (!email) {
-        sendJson(res, 400, { success: false, message: 'College email is required' });
+        sendJson(res, 400, { success: false, message: 'College email is required' }, req);
         return;
       }
 
-      let user = users.find(u => u.email.toLowerCase() === email);
+      let user = users.find(u => u.email && u.email.toLowerCase() === email);
       if (!user) {
-        // Auto-register as student with college domain
         user = {
           email,
           name: email.split('@')[0],
@@ -462,7 +492,7 @@ const server = app;
         writeJson(USERS_FILE, users);
       }
 
-      sendJson(res, 200, { success: true, user, message: 'Welcome back, ' + user.name + '!' });
+      sendJson(res, 200, { success: true, user, message: 'Welcome back, ' + user.name + '!' }, req);
       return;
     }
 
@@ -470,17 +500,16 @@ const server = app;
     if (pathname === '/api/auth/switch-persona' && method === 'POST') {
       const body = await parseRequestBody(req);
       const email = (body.email || '').trim().toLowerCase();
-      const user = users.find(u => u.email.toLowerCase() === email);
+      const user = users.find(u => u.email && u.email.toLowerCase() === email);
       if (!user) {
-        sendJson(res, 404, { success: false, message: 'User persona not found' });
+        sendJson(res, 404, { success: false, message: 'User persona not found' }, req);
         return;
       }
-      sendJson(res, 200, { success: true, user });
+      sendJson(res, 200, { success: true, user }, req);
       return;
     }
 
-    // Fallback 404 for unknown API
-    sendJson(res, 404, { success: false, message: 'Endpoint not found' });
+    sendJson(res, 404, { success: false, message: 'Endpoint not found' }, req);
     return;
   }
 
@@ -489,7 +518,6 @@ const server = app;
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
-      // Single Page Application fallback to index.html
       filePath = path.join(PUBLIC_DIR, 'index.html');
     }
 
@@ -498,16 +526,29 @@ const server = app;
 
     fs.readFile(filePath, (readErr, content) => {
       if (readErr) {
-        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.writeHead(500, { 'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*' });
         res.end('500 Internal Server Error');
         return;
       }
       res.writeHead(200, {
         'Content-Type': contentType,
+        'Access-Control-Allow-Origin': '*',
         'Cache-Control': ext === '.html' ? 'no-cache' : 'public, max-age=3600'
       });
       res.end(content);
     });
+  });
+}
+
+const app = http.createServer((req, res) => {
+  res.req = req;
+  handleRequest(req, res).catch(err => {
+    console.error('Request error:', err);
+    if (!res.headersSent) {
+      sendJson(res, 500, { success: false, message: 'Internal server error' }, req);
+    } else {
+      res.end();
+    }
   });
 });
 
