@@ -1,10 +1,12 @@
-// Campus Connect - Full Stack Backend Server (Node.js Native)
+// Campus Connect - Full Stack Backend Server (Node.js Native + MongoDB)
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
+const { MongoClient } = require('mongodb');
 
 const PORT = process.env.PORT || 3000;
+const MONGODB_URI = process.env.MONGODB_URI;
 const DATA_DIR = path.join(__dirname, 'data');
 const PUBLIC_DIR = path.join(__dirname, 'public');
 
@@ -32,6 +34,63 @@ const MIME_TYPES = {
   '.webp': 'image/webp'
 };
 
+// ---------- Storage (MongoDB if MONGODB_URI is set, else JSON files) ----------
+let db = null;
+const cache = {};
+const KEYS = { [CLUBS_FILE]: 'clubs', [USERS_FILE]: 'users' };
+
+function fileRead(file) {
+  try {
+    return JSON.parse(fs.readFileSync(file, 'utf-8'));
+  } catch (err) {
+    console.error('Error reading JSON from ' + file, err);
+    return [];
+  }
+}
+
+function readJson(file) {
+  return db ? cache[file] : fileRead(file);
+}
+
+function writeJson(file, data) {
+  if (db) {
+    cache[file] = data;
+    db.collection('store')
+      .updateOne({ _id: KEYS[file] }, { $set: { data } }, { upsert: true })
+      .catch(e => console.error('Mongo write error', e));
+    return true;
+  }
+  try {
+    fs.writeFileSync(file, JSON.stringify(data, null, 2), 'utf-8');
+    return true;
+  } catch (err) {
+    console.error('Error writing JSON to ' + file, err);
+    return false;
+  }
+}
+
+async function initDb() {
+  if (!MONGODB_URI) {
+    console.log('No MONGODB_URI set, using JSON files');
+    return;
+  }
+  const client = new MongoClient(MONGODB_URI);
+  await client.connect();
+  const d = client.db('campusconnect');
+  for (const file of [CLUBS_FILE, USERS_FILE]) {
+    const doc = await d.collection('store').findOne({ _id: KEYS[file] });
+    if (doc) {
+      cache[file] = doc.data;
+    } else {
+      cache[file] = fileRead(file);
+      await d.collection('store').insertOne({ _id: KEYS[file], data: cache[file] });
+    }
+  }
+  db = d;
+  console.log('Connected to MongoDB');
+}
+
+// ---------- Helpers ----------
 function corsHeaders(req) {
   const requested = req && req.headers['access-control-request-headers'];
   return {
@@ -40,26 +99,6 @@ function corsHeaders(req) {
     'Access-Control-Allow-Headers': requested || 'Content-Type, Authorization, x-user-email',
     'Access-Control-Max-Age': '86400'
   };
-}
-
-function readJson(file) {
-  try {
-    const raw = fs.readFileSync(file, 'utf-8');
-    return JSON.parse(raw);
-  } catch (err) {
-    console.error('Error reading JSON from ' + file, err);
-    return [];
-  }
-}
-
-function writeJson(file, data) {
-  try {
-    fs.writeFileSync(file, JSON.stringify(data, null, 2), 'utf-8');
-    return true;
-  } catch (err) {
-    console.error('Error writing JSON to ' + file, err);
-    return false;
-  }
 }
 
 function parseRequestBody(req) {
@@ -114,8 +153,8 @@ function toIsoDate(value, fallback) {
   return isNaN(d.getTime()) ? fallback : d.toISOString();
 }
 
+// ---------- Request handler ----------
 async function handleRequest(req, res) {
-  // CORS Preflight
   if (req.method === 'OPTIONS') {
     res.writeHead(204, corsHeaders(req));
     res.end();
@@ -126,7 +165,6 @@ async function handleRequest(req, res) {
   const pathname = parsedUrl.pathname;
   const method = req.method;
 
-  // API Routes
   if (pathname.startsWith('/api/')) {
     const clubs = readJson(CLUBS_FILE);
     const users = readJson(USERS_FILE);
@@ -553,10 +591,14 @@ const app = http.createServer((req, res) => {
 });
 
 if (require.main === module) {
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 Campus Connect server running on port ${PORT}`);
-    console.log(`   Accessible at http://localhost:${PORT}`);
-  });
+  initDb()
+    .catch(e => console.error('Mongo failed, using files instead:', e))
+    .then(() => {
+      app.listen(PORT, '0.0.0.0', () => {
+        console.log(`🚀 Campus Connect server running on port ${PORT}`);
+        console.log(`   Accessible at http://localhost:${PORT}`);
+      });
+    });
 }
 
 module.exports = app;
