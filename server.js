@@ -162,6 +162,53 @@ const server = app;
       return;
     }
 
+    // POST /api/clubs - Create a new club  <-- NEW, THIS IS THE FIX
+    if (pathname === '/api/clubs' && method === 'POST') {
+      const body = await parseRequestBody(req);
+
+      if (!body.name || !body.name.trim()) {
+        sendJson(res, 400, { success: false, message: 'Club name is required' });
+        return;
+      }
+
+      const slug = body.name.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      const id = slug + '-' + Date.now().toString().slice(-5);
+
+      const newClub = {
+        id,
+        name: body.name.trim(),
+        tagline: body.tagline || '',
+        description: body.description || '',
+        category: body.category || 'General',
+        subCategory: body.subCategory || '',
+        tags: Array.isArray(body.tags) ? body.tags : (body.tags ? String(body.tags).split(',').map(t => t.trim()) : []),
+        logo: body.logo || '',
+        weeklyCommitment: body.weeklyCommitment || '',
+        urgencyLevel: body.urgencyLevel || 'normal',
+        interestedNum: 0,
+        recruitment: {
+          startDate: body.startDate || new Date().toISOString(),
+          endDate: body.endDate || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+          displayStartDate: body.displayStartDate || '',
+          displayEndDate: body.displayEndDate || '',
+          externalUrl: body.formUrl || '',
+          isOpen: true,
+          statusText: 'Applications Open',
+          roles: Array.isArray(body.roles) ? body.roles : (body.roles ? String(body.roles).split(',').map(r => r.trim()) : [])
+        },
+        stats: { members: 0, pendingPosts: 0, projectsShipped: 0 },
+        achievements: [],
+        recentActivities: [],
+        delegatedMembers: []
+      };
+
+      clubs.push(newClub);
+      writeJson(CLUBS_FILE, clubs);
+
+      sendJson(res, 201, { success: true, message: 'Club created successfully!', club: newClub });
+      return;
+    }
+
     // GET /api/clubs/:id
     const clubMatch = pathname.match(/^\/api\/clubs\/([a-zA-Z0-9-]+)$/);
     if (clubMatch && method === 'GET') {
