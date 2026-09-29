@@ -1,5 +1,5 @@
 // Client API module
-const BACKEND_URL = 'PASTE-YOUR-BACKEND-URL-HERE'; // e.g. https://campus-connect-backend.onrender.com (no slash at the end)
+const BACKEND_URL = 'https://campus-connect-9k8b.onrender.com';'; // e.g. https://campus-connect-backend.onrender.com (no slash at the end)
 
 export const api = {
   getUserEmail() {
