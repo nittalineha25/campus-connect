@@ -19,7 +19,7 @@ export const api = {
     };
 
     try {
-      const res = await fetch('https://campus-connect-4-1.onrender.com/api' + endpoint, {
+      const res = await fetch('https://campus-connect-connect-9k8b.onrender.com/api' + endpoint, {
         ...options,
         headers
       });
