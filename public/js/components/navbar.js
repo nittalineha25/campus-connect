@@ -1,4 +1,5 @@
 import { appStore } from '../store.js';
+import { openCreateClubModal } from './createClubModal.js';
 
 export function renderNavbar(container) {
   const user = appStore.state.user;
@@ -66,6 +67,14 @@ export function renderNavbar(container) {
 
         <!-- Right: Actions (Theme Toggle, Persona Selector) -->
         <div class="flex items-center gap-2 sm:gap-3">
+
+          <!-- CREATE CLUB BUTTON -->
+          <button 
+            id="btn-open-create-club" 
+            class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm transition-all"
+          >
+            <span>+ Create Club</span>
+          </button>
           
           <!-- DARK / WHITE MODE TOGGLE BUTTON -->
           <button 
@@ -161,6 +170,7 @@ export function renderNavbar(container) {
   container.querySelector('#nav-link-saved')?.addEventListener('click', () => appStore.setView('saved'));
   container.querySelector('#btn-open-dashboard')?.addEventListener('click', () => appStore.setView('dashboard'));
   container.querySelector('#theme-toggle-btn')?.addEventListener('click', () => appStore.toggleTheme());
+  container.querySelector('#btn-open-create-club')?.addEventListener('click', () => openCreateClubModal());
 
   // Search input handler
   const searchInput = container.querySelector('#global-search-input');
