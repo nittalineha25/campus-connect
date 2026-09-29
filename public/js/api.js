@@ -1,4 +1,6 @@
 // Client API module
+const BACKEND_URL = 'PASTE-YOUR-BACKEND-URL-HERE'; // e.g. https://campus-connect-backend.onrender.com (no slash at the end)
+
 export const api = {
   getUserEmail() {
     try {
@@ -19,7 +21,7 @@ export const api = {
     };
 
     try {
-      const res = await fetch('https://campus-connect-9k8b.onrender.com/api' + endpoint, {
+      const res = await fetch(BACKEND_URL + '/api' + endpoint, {
         ...options,
         headers
       });
@@ -91,7 +93,7 @@ export const api = {
   async createClub(club, adminKey) {
     return this.request('/clubs', {
       method: 'POST',
-      headers: { 'x-admin-key': adminKey },
+      headers: adminKey ? { 'x-admin-key': adminKey } : {},
       body: JSON.stringify(club)
     });
   },
