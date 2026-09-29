@@ -209,6 +209,29 @@ const server = app;
       return;
     }
 
+    // POST /api/clubs/:id/apply - returns the Google Form link and counts the click
+    const applyMatch = pathname.match(/^\/api\/clubs\/([a-zA-Z0-9-]+)\/apply$/);
+    if (applyMatch && method === 'POST') {
+      const clubId = applyMatch[1];
+      const club = clubs.find(c => c.id === clubId);
+      if (!club) {
+        sendJson(res, 404, { success: false, message: 'Club not found' });
+        return;
+      }
+
+      club.interestedNum = (club.interestedNum || 0) + 1;
+      writeJson(CLUBS_FILE, clubs);
+
+      const formUrl = club.recruitment && club.recruitment.externalUrl;
+      if (!formUrl) {
+        sendJson(res, 404, { success: false, message: 'This club has no application form link yet' });
+        return;
+      }
+
+      sendJson(res, 200, { success: true, formUrl });
+      return;
+    }
+
     // GET /api/clubs/:id
     const clubMatch = pathname.match(/^\/api\/clubs\/([a-zA-Z0-9-]+)$/);
     if (clubMatch && method === 'GET') {
