@@ -19,7 +19,7 @@ export const api = {
     };
 
     try {
-      const res = await fetch('https://campus-connect-connect-9k8b.onrender.com/api' + endpoint, {
+      const res = await fetch('https://campus-connect-9k8b.onrender.com/api' + endpoint, {
         ...options,
         headers
       });
@@ -86,17 +86,19 @@ export const api = {
 
   async getUsers() {
     return this.request('/users');
-  },async createClub(club, adminKey) {
-  return this.request('/clubs', {
-    method: 'POST',
-    headers: { 'x-admin-key': adminKey },
-    body: JSON.stringify(club)
-  });
-},
+  },
 
-async applyToClub(id) {
-  return this.request('/clubs/' + id + '/apply', { method: 'POST' });
-},
+  async createClub(club, adminKey) {
+    return this.request('/clubs', {
+      method: 'POST',
+      headers: { 'x-admin-key': adminKey },
+      body: JSON.stringify(club)
+    });
+  },
+
+  async applyToClub(id) {
+    return this.request('/clubs/' + id + '/apply', { method: 'POST' });
+  },
 
   async resetData() {
     return this.request('/reset-data', { method: 'POST' });
